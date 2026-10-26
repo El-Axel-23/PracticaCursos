@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PracticaCursos">
         <activity
-            android:name=".MainActivity"
+            android:name=".Vista.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -22,7 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Registro_Curso"
+            android:name=".Vista.Ver_Registro"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity_detalle_materia"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
