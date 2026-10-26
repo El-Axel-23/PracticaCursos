@@ -22,9 +22,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".catalogoCurso"
+            android:name=".Vista.Ver_Registro"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Vista.DetalleMateriaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

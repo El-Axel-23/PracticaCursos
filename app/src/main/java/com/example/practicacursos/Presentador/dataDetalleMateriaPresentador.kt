@@ -1,3 +1,5 @@
 package com.example.practicacursos.Presentador
 
-data class dataDetalleMateriaPresentador()
+data class dataDetalleMateriaPresentador(){
+
+}
