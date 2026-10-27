@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Vista.Ver_Registro"
+            android:name=".Vista.Activity_VerRegistro"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
