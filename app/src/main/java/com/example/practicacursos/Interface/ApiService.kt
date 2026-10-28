@@ -21,6 +21,8 @@ suspend fun obtenerRegistros(@Query("carrera_id") carreraId: Int): List<dataRegi
     @GET("detalle_curso.php")
     suspend fun detalleMaterial(@Query("curso_id") cursoId: Int): dataDetalleMateria
 
+    @GET("obtener_cursos.php")
+    suspend fun obtenerCursos(@Query("carrera_id") carreraId: Int): List<dataCurso>
 
     @FormUrlEncoded
     @POST("obtener_alumno.php")
@@ -28,7 +30,5 @@ suspend fun obtenerRegistros(@Query("carrera_id") carreraId: Int): List<dataRegi
 
     @FormUrlEncoded
     @POST("registrar_cursos.php")
-    suspend fun registrarInscripcion(@Field("matricula")matricula: String,
-                                     @Field("curso_id")cursoId: Int,
-                                     @Field("fecha_registro")fechaRegistro: String): dataRespuestaInscripcion
+    suspend fun registrarInscripcion(@Field("matricula")matricula: String, @Field("curso_id")cursoId: Int, @Field("fecha_registro")fechaRegistro: String): dataRespuestaInscripcion
 }
