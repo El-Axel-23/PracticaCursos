@@ -8,5 +8,4 @@ data class dataCarreras(val id: Int,val carrera: String){
     override fun toString(): String = carrera
 }
 @Serializable
-data class dataRegistro(val id: Int,val nombre: String,@SerialName("url_imagen") val urlImagen: String ?= null,
-                        val cupo: Int, val inscritos: Int)
+data class dataRegistro(val id: Int,val nombre: String,@SerialName("url_imagen") val urlImagen: String ?= null, val cupo: Int, val inscritos: Int)
