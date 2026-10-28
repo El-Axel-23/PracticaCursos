@@ -53,15 +53,16 @@ class Registro_Curso : AppCompatActivity(), RegistrocursosVista {
         val datePickerDialog=DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener
         {
             override fun onDateSet(view: DatePicker, ano: Int, mes: Int, dia: Int) {
-                txtFechaRegistro.setText(String.format("%02d/%02d/%04d", dia, mes + 1, ano))
+                txtFechaRegistro.setText(String.format("%04d-%02d-%02d",ano,mes+1,dia))
             }
         }, ano, mes, dia)
         datePickerDialog.show()
     }
 
     fun ConfirmarInscripcion(v: View){
-        val matricula=txtMatriculaAlumno.text.toString()
-        presentador.registrarCurso(matricula, cursoId, txtFechaRegistro.text.toString())
+        val matricula=txtMatriculaAlumno.text.toString().trim()
+        val fecha=txtFechaRegistro.text.toString().trim()
+        presentador.registrarCurso(matricula,cursoId,fecha)
     }
     fun CancelarRegistro(v: View){
         finish()
