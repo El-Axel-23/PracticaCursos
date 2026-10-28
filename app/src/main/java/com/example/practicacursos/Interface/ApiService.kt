@@ -15,4 +15,7 @@ suspend fun obtenerRegistros(@Query("carrera_id") carreraId: Int): List<dataRegi
 
     @GET("detalle_curso.php")
     suspend fun detalleMateria(@Query("curso_id") cursoId: Int): dataDetalleMateria
+
+    @GET("obtener_cursos.php")
+    suspend fun obtenerCursos(@Query("carrera_id") carreraId: Int): List<dataCurso>
 }
