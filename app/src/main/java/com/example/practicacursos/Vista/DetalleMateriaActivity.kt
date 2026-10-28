@@ -3,14 +3,14 @@ package com.example.practicacursos.Vista
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.bumptech.glide.Glide
+import androidx.viewpager2.widget.ViewPager2
+import com.example.practicacursos.Adaptador.GaleriaAdaptador
 import com.example.practicacursos.Modelo.dataDetalleMateria
 import com.example.practicacursos.Presentador.clsDetalleMateriaPresentador
 import com.example.practicacursos.R
@@ -18,13 +18,14 @@ import com.example.practicacursos.R
 class DetalleMateriaActivity : AppCompatActivity() {
     private lateinit var presenter: clsDetalleMateriaPresentador
     private lateinit var btnRegresar: Button
-    private lateinit var imgMateria: ImageView
+    private lateinit var vpGaleria: ViewPager2
     private lateinit var txtNombre: TextView
     private lateinit var txtCodigo: TextView
     private lateinit var txtDescripcion: TextView
     private lateinit var txtEspacio: TextView
     private lateinit var txtTotalHoras: TextView
     private lateinit var txtDiasAtencion: TextView
+    private lateinit var adapterGaleria: GaleriaAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,16 +37,35 @@ class DetalleMateriaActivity : AppCompatActivity() {
             insets
         }
         btnRegresar = findViewById(R.id.btnRegresar)
-        imgMateria = findViewById(R.id.imgdetalleMateria)
+        vpGaleria = findViewById(R.id.vpGaleria)
         txtNombre = findViewById(R.id.txtdetalleMateria)
         txtCodigo = findViewById(R.id.txtdetalleCodigo)
         txtDescripcion = findViewById(R.id.txtdetalleDescripcion)
         txtEspacio = findViewById(R.id.txtdetalleEspacio)
         txtTotalHoras = findViewById(R.id.txtdetalleTotalHoras)
         txtDiasAtencion = findViewById(R.id.txtdetalleDiasAtencion)
+        adapterGaleria = GaleriaAdaptador(emptyList())
+        vpGaleria.adapter = adapterGaleria
+
         val id = intent.getIntExtra("MATERIA_ID", 0)
+        val nombre = intent.getStringExtra("NOMBRE_MATERIA") ?: ""
+        val codigo = intent.getStringExtra("CODIGO_MATERIA") ?: ""
+        val descripcion = intent.getStringExtra("DESCRIPCION_MATERIA") ?: "No llego"
+        val edificio = intent.getStringExtra("EDIFICIO_MATERIA") ?: ""
+        val salon = intent.getStringExtra("SALON_MATERIA") ?: ""
+        val totalHoras = intent.getIntExtra("TOTALHORAS_MATERIA", 0)
+        val diasAtencion = intent.getStringExtra("DIASATENCION_MATERIA") ?: ""
+        val horario = intent.getStringExtra("HORARIO_MATERIA") ?: ""
+
+        txtNombre.text = nombre
+        txtCodigo.text = "Código: " + codigo
+        txtDescripcion.text = descripcion
+        txtEspacio.text = edificio + ", Salón " + salon
+        txtTotalHoras.text = totalHoras.toString() + " Horas"
+        txtDiasAtencion.text = diasAtencion + " (" + horario + " hrs)"
         presenter = clsDetalleMateriaPresentador(this)
         configurarListeners()
+
         if (id != 0) {
             presenter.cargarDetalle(id)
         }
@@ -59,21 +79,8 @@ class DetalleMateriaActivity : AppCompatActivity() {
         })
     }
 
-    fun mostrarDetalle(materia: dataDetalleMateria) {
-        txtNombre.text = materia.nombre
-        txtCodigo.text = "Código: " + materia.codigo
-        txtDescripcion.text = materia.descripcion
-        txtEspacio.text = materia.edificio + ", Salón " + materia.salon
-        txtTotalHoras.text = materia.totalhoras.toString() + " Horas"
-        txtDiasAtencion.text = materia.diasatencion + " (" + materia.horario + " hrs)"
-
-        val baseUrl = "http://192.168.1.69/cursos_api/"
-        val urlImagenCompleta = baseUrl + materia.urlimagen
-        Glide.with(this)
-            .load(urlImagenCompleta)
-            .placeholder(android.R.drawable.ic_menu_gallery)
-            .error(android.R.drawable.stat_notify_error)
-            .into(imgMateria)
+    fun mostrarImagenes(imagenes: List<dataDetalleMateria>) {
+        adapterGaleria.actualizarLista(imagenes)
     }
 
     fun mostrarError(mensaje: String) {

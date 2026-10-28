@@ -19,7 +19,7 @@ suspend fun obtenerCarreras(): List<dataCarreras>
 suspend fun obtenerRegistros(@Query("carrera_id") carreraId: Int): List<dataRegistro>
 
     @GET("detalle_curso.php")
-    suspend fun detalleMaterial(@Query("curso_id") cursoId: Int): dataDetalleMateria
+    suspend fun detalleMateria(@Query("curso_id") cursoId: Int): List<dataDetalleMateria>
 
     @GET("obtener_cursos.php")
     suspend fun obtenerCursos(@Query("carrera_id") carreraId: Int): List<dataCurso>

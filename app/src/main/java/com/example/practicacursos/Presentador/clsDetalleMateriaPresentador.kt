@@ -13,8 +13,8 @@ class clsDetalleMateriaPresentador(private val vista: DetalleMateriaActivity) {
     fun cargarDetalle(materiaId: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                val materia: dataDetalleMateria = modelo.obtenerDetalleMateria(materiaId)
-                vista.mostrarDetalle(materia)
+                val listaImagenes: List<dataDetalleMateria> = modelo.obtenerDetalleMateria(materiaId)
+                vista.mostrarImagenes(listaImagenes)
             } catch (e: Exception) {
                 vista.mostrarError("Error al cargar detalle: " + e.localizedMessage)
             }
