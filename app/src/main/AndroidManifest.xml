@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PracticaCursos">
         <activity
-            android:name=".Vista.MainActivity"
+            android:name=".Vista.CatalogoCurso"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

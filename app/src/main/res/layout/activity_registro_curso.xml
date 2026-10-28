@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registro_Curso">
+    tools:context=".Vista.Registro_Curso">
 
     <ScrollView
         android:id="@+id/svRegistro"
