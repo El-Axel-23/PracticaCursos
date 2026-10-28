@@ -1,12 +1,10 @@
 package com.example.practicacursos.Presentador
 
 import com.example.practicacursos.Modelo.RegistrocursosModelo
-import com.example.practicacursos.Registro_Curso
 import com.example.practicacursos.Vista.RegistrocursosVista
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.coroutines.coroutineContext
 
 class RegistrocursosPresentador(private val vista: RegistrocursosVista) {
 

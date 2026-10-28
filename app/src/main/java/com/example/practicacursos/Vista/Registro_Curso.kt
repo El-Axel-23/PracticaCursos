@@ -1,4 +1,4 @@
-package com.example.practicacursos
+package com.example.practicacursos.Vista
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.practicacursos.Presentador.RegistrocursosPresentador
-import com.example.practicacursos.Vista.RegistrocursosVista
+import com.example.practicacursos.R
 import java.util.Calendar
 
 class Registro_Curso : AppCompatActivity(), RegistrocursosVista {
@@ -38,22 +38,21 @@ class Registro_Curso : AppCompatActivity(), RegistrocursosVista {
         btnConfirmarInscripcion=findViewById(R.id.btnConfirmarInscripcion)
         btnCancelar=findViewById(R.id.btnCancelar)
 
-        presentador=RegistrocursosPresentador(this)
+        presentador= RegistrocursosPresentador(this)
 
         btnConfirmarInscripcion.setOnClickListener(this::ConfirmarInscripcion)
         btnCancelar.setOnClickListener(this::CancelarRegistro)
         txtFechaRegistro.setOnClickListener(this::mostrarcalendario)
     }
     fun mostrarcalendario(v: View){
-        val calendario=Calendar.getInstance()
+        val calendario= Calendar.getInstance()
         val ano=calendario.get(Calendar.YEAR)
         val mes=calendario.get(Calendar.MONTH)
         val dia=calendario.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog=DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener
-        {
+        val datePickerDialog= DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
             override fun onDateSet(view: DatePicker, ano: Int, mes: Int, dia: Int) {
-                txtFechaRegistro.setText(String.format("%04d-%02d-%02d",ano,mes+1,dia))
+                txtFechaRegistro.setText(String.format("%04d-%02d-%02d", ano, mes + 1, dia))
             }
         }, ano, mes, dia)
         datePickerDialog.show()
